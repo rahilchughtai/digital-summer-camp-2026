@@ -3,6 +3,10 @@ let video;
 let flippedVideo;
 let label = '';
 
+/** SUMMER CAMP
+ *
+ * Ersetzt die URL durch die URL eures eigenen Teachable Machine-Modells.
+ */
 const imageModelURL =
     'https://teachablemachine.withgoogle.com/models/mkrA1pI7y/';
 
