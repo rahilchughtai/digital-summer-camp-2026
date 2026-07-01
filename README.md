@@ -54,6 +54,16 @@ Mit diesem Projekt lernt man unter anderem:
 
 Wenn du die Bilder für das dritte Canvas verwendest, müssen die Dateien im Ordner `assets` liegen und korrekt benannt sein.
 
+## Ressourcen
+
+- [p5.js](https://p5js.org/)
+- [ml5.js](https://ml5js.org/)
+- [Teachable Machine](https://teachablemachine.withgoogle.com/)
+- [Snake Game Tutorial](https://p5js.org/examples/simulate-snake.html)
+- [p5js examples](https://p5js.org/examples/)
+- [JS Cheat Sheet](https://www.git-tower.com/learn/cheat-sheets/javascript)
+
+
 ## Ziel des Projekts
 
 Das Projekt eignet sich gut für einen Einstieg in:

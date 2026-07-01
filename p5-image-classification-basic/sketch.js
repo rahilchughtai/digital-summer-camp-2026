@@ -37,6 +37,12 @@ const videoSketch = (p) => {
     };
 };
 
+/**
+ * Startet die Bildklassifikation auf dem (gespiegelten) Videoframe
+ * und übergibt das Ergebnis an den Callback.
+ *
+ * @returns {void}
+ */
 function classifyVideo() {
     /**
      * DSC 2026 Ihr könnt hier entscheiden, ob ihr das Video spiegeln wollt oder nicht. Wenn ihr das Video nicht spiegeln wollt, könnt ihr die Zeile mit flippedVideo entfernen und stattdessen video direkt an classifier.classify übergeben.
@@ -45,6 +51,14 @@ function classifyVideo() {
     classifier.classify(flippedVideo, gotResult);
 }
 
+/**
+ * Verarbeitet das Ergebnis der Klassifikation und stößt die nächste
+ * Klassifikation an, um eine kontinuierliche Erkennung zu ermöglichen.
+ *
+ * @param {Error|null} error Fehlerobjekt bei fehlgeschlagener Klassifikation.
+ * @param {{label: string}[]} results Liste der Vorhersagen, sortiert nach Wahrscheinlichkeit.
+ * @returns {void}
+ */
 function gotResult(error, results) {
     if (error) {
         console.error(error);
@@ -54,7 +68,7 @@ function gotResult(error, results) {
     classifyVideo();
 }
 
-let videoSketchInstance = new p5(videoSketch);
+
 
 /**
  * DSC 2026 Hir könnt ihr euch Inspiration für eure eigenen Ideen holen.
@@ -85,6 +99,13 @@ const snakeSketch = (p) => {
         right: 'left',
     };
 
+    /**
+     * Übernimmt eine neue Bewegungsrichtung, wenn sie gültig ist
+     * und kein direktes Umdrehen der Schlange verursacht.
+     *
+     * @param {'up'|'down'|'left'|'right'|null} nextDirection Gewünschte nächste Richtung.
+     * @returns {void}
+     */
     function applyDirectionChange(nextDirection) {
         if (!nextDirection || nextDirection === direction) {
             return;
@@ -95,13 +116,20 @@ const snakeSketch = (p) => {
         direction = nextDirection;
     }
 
+    /**
+     * Übersetzt ein ML-Label in eine Snake-Richtung.
+     *
+     * @param {string} label Erkannter Klassenname aus dem Modell.
+     * @returns {'up'|'down'|'left'|'right'|null} Zielrichtung oder `null`, falls kein Mapping vorhanden ist.
+     */
     function labelToDirection(label) {
+        const normalized =
+            typeof label === 'string' ? label.trim().toLowerCase() : '';
+
         /**
          * DSC 2026 Hier müsst ihr die Labels anpassen, die ihr in eurem Teachable Machine-Modell verwendet habt.
          * Ihr müsst eure Labels auf der linken Seite in der Mapping-Variable eintragen, damit sie in die Richtung des Snake-Spiels übersetzt werden können.
          */
-        const normalized =
-            typeof label === 'string' ? label.trim().toLowerCase() : '';
         const mapping = {
             up: 'up',
             down: 'down',
@@ -285,6 +313,11 @@ const snakeSketch = (p) => {
         p.noLoop();
     }
 
+    /**
+     * Prüft, ob der Kopf der Schlange mit einem ihrer eigenen Segmente kollidiert.
+     *
+     * @returns {boolean} `true`, wenn eine Selbstkollision vorliegt, sonst `false`.
+     */
     function selfColliding() {
         // Store the last segment as head
         let head = segments[0];
@@ -323,6 +356,11 @@ const snakeSketch = (p) => {
         }
     }
 
+    /**
+     * Setzt die Frucht auf eine neue zufällige Position innerhalb des Grids.
+     *
+     * @returns {void}
+     */
     function updateFruitCoordinates() {
         let x = p.floor(p.random(GRID_WIDTH));
         let y = p.floor(p.random(GRID_HEIGHT));
@@ -349,8 +387,7 @@ const snakeSketch = (p) => {
         applyDirectionChange(nextDirection);
     };
 };
-// DSC 2026 ihr könnt die folgende Zeile unkommentieren, um das Snake-Spiel zu aktivieren und es basierend auf den ML-Labels zu steuern.
-// let snakeSketchInstance = new p5(snakeSketch);
+
 
 /* DSC 2026 Beispiel 2: Image Canvas basierend auf ML-Label */
 const predictionImageSketch = (p) => {
@@ -409,6 +446,13 @@ const predictionImageSketch = (p) => {
         }
     };
 
+    /**
+     * Lädt das Bild für ein gegebenes Label aus dem Cache oder asynchron von der Quelle.
+     * Bei Ladefehlern wird auf das Fallback-Bild (`default`) zurückgegriffen.
+     *
+     * @param {string} labelKey Schlüssel aus `imageMap` (z. B. `up`, `down`, `default`).
+     * @returns {void}
+     */
     function loadImageForLabel(labelKey) {
         if (imageCache[labelKey]) {
             currentImage = imageCache[labelKey];
@@ -448,5 +492,12 @@ const predictionImageSketch = (p) => {
         );
     }
 };
+
+// DSC 2026 Der Sketch für das Video-Canvas wird hier gestartet
+let videoSketchInstance = new p5(videoSketch);
+
+// DSC 2026 ihr könnt die folgende Zeile unkommentieren, um das Beispiel 1 Snake-Spiel zu aktivieren und es basierend auf den ML-Labels zu steuern.
+// let snakeSketchInstance = new p5(snakeSketch);
+
 // DSC 2026 ihr könnt die folgende Zeile unkommentieren, um das Beispiel 2 zu aktivieren und die Bilder basierend auf den ML-Labels anzuzeigen.
 // let imagePredictionInstance = new p5(predictionImageSketch);
