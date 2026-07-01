@@ -59,7 +59,7 @@ Wenn du die Bilder für das dritte Canvas verwendest, müssen die Dateien im Ord
 - [p5.js](https://p5js.org/)
 - [ml5.js](https://ml5js.org/)
 - [Teachable Machine](https://teachablemachine.withgoogle.com/)
-- [Snake Game Tutorial](https://p5js.org/examples/simulate-snake.html)
+- [Snake Game Tutorial](https://p5js.org/examples/Games-Snake/)
 - [p5js examples](https://p5js.org/examples/)
 - [JS Cheat Sheet](https://www.git-tower.com/learn/cheat-sheets/javascript)
 
@@ -71,3 +71,43 @@ Das Projekt eignet sich gut für einen Einstieg in:
 - visuelle Interaktion
 - Machine Learning im Browser
 - einfache Spielentwicklung mit p5.js
+
+## Weitere Ideen
+
+
+### Reaction Game (Reflex-Spiel)
+
+* Symbol erscheint (z. B. Pfeil links/rechts)
+* Spieler zeigt passende Geste
+* Punkte bei richtigen Matches, Zeitdruck optional
+
+### Emoji Face Mapper
+
+* Gesten werden direkt auf Emojis/Bilder gemappt
+* Overlay ersetzt oder ergänzt dein Gesicht
+* Optional: weiche Übergänge zwischen Zuständen
+
+
+### Mood Background Generator
+
+* Geste ändert Hintergrund + visuelle Effekte
+  * ruhig → sanfte Farben
+  * aktiv → Partikel, Bewegung
+
+### Dodge Game
+
+* Spieler bewegt sich per Geste (links/rechts)
+* Hindernissen ausweichen
+* Geschwindigkeit nimmt zu
+
+### Endless Runner
+
+* Springen per Geste
+* Hindernisse überspringen
+* Score steigt kontinuierlich
+
+### Gesture Menü
+
+* Navigation komplett per Gesten
+* links/rechts → Auswahl
+* Geste → bestätigen
